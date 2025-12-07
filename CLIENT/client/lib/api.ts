@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://localhost:7142";
 
 function generateSessionId(): string {
     return "session_" + Math.random().toString(36).substr(2, 9) + "_" + Date.now();
@@ -26,7 +26,7 @@ export async function startSession() {
     try {
         const sessionId = generateSessionId();
 
-        const response = await fetch(`${API_BASE_URL}/start-session`, {
+        const response = await fetch(`${API_BASE_URL}/api/start-session`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -86,7 +86,7 @@ export async function fetchQRCode() {
         // }
 
         const sessionId = getSessionCookie();
-        const response = await fetch(`${API_BASE_URL}/qr-code`, {
+        const response = await fetch(`${API_BASE_URL}/api/qrcode`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
